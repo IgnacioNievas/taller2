@@ -17,10 +17,10 @@ for(int j=0; j <cant ; j++)
 }
 
 
-
-for(int j=0; j < cant ; j++)
+printf("Array invertido:\n");
+for(int i =cant-1 ; i>=0 ; i-- )
 {
-printf("*(pa + %d): %d ", j, *(pa + j));
+printf("*(pa + %d): %d ", i, *(pa + i));
 printf("\n");
 }
 
