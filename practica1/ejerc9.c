@@ -22,7 +22,7 @@ char * reverse ( char *string ) ;// retorna una cadena que es string invertida
 
  int main () {
  char * text1 = " Sera Cierto ?? " ;
- int largo = strLargo( text1 ) ;
+ int largo = strLargo(text1)+1 ;
  char * result = (char*) malloc(largo*sizeof(char)) ;
  char * reves ;
  if ( result == NULL ){
@@ -40,9 +40,9 @@ strIzq ( result , text1 ) ;
  printf (" Sin blancos a la Izq : " ) ;
  puts ( result ) ;
  strDer ( result , text1 ) ;
-printf (" Der : [ %s ] \n " , result ) ; 
+printf (" Der : [%s] \n " , result ) ; 
  strAmbos ( result , text1 ) ;
- printf (" Ambos : [ %s ] , sin blancos al principio ni al final. \n " , result ) ;
+ printf (" Ambos : [%s] , sin blancos al principio ni al final. \n " , result ) ;
 
   strMayMin( result , text1 , MAYUSCULAS ) ;
  printf (" Mayusculas : [ %s ] \n " , result ) ;
@@ -57,8 +57,10 @@ free(result);
 
  int strLargo ( const char *origen ){
     int largo;
-for(int i =0 ; i< strlen(origen); i++){
-largo = i+1;
+    int cant = strlen(origen);
+   
+for(int i =0 ; i< cant ; i++){
+largo = i;
 }
 return largo ;
  }
@@ -101,48 +103,84 @@ printf("no se pudo reserva la memoria \n");
 
  void strIzq ( char *destino , const char *origen ){
 
-     int cant = strlen(origen)-1;
+     int cant = strlen(origen),j=0;
+
       
-for(int i=0 ;i <( cant/3 ) ; i++){
-    if( *(destino+i) == ' '){
-    *(destino+i)=*(destino+i)+1;
+for(int i=0 ;i < cant ; i++){
+    if( *(origen+i) == ' '){
+j++;
+    }else{
+        break;
     }
-    
+   
  }
+
+ for(int i=0; i < cant;i++){
+     *(destino+i)=*(origen+i+j);
+
+ }
+
   
   } ; //Saca blancos Izq .
 
  void strDer ( char *destino , const char *origen ){
-int cant = strlen(origen)-1;
+int cant = strlen(origen),j=0;
 
       
-for(int i=cant-1 ;i>=cant/2 ; i--){
-    if( *(destino+i) == ' '){
-    *(destino+i)=*(destino+i)+1;
-    } 
+for(int i=cant-1 ;i>=0 ; i--){
+    if( *(origen+i) == ' '){
+    j++;
+    }else{
+        break;
+    }
+
+    for(int i=cant-1; i>=j;i--){
+        *(destino+i)= *(origen+i-j);
+    }
+    for(int i =j; i>=0 ; i--){
+*(destino+i)=' ';
+    }
  }
  } ; // Saca blancos Der .
 
  void strAmbos ( char *destino , const char *origen ){
+int y=0,x=0;
 
-
- int cant = strlen(origen)-1;
-      
-for(int i=0 ;i <( cant/3 ) ; i++){
-    if( *(destino+i) == ' '){
-    *(destino+i)=*(destino+i)+1;
+ int cant = strlen(origen);
+for(int i=0;i < cant;i++ ){
+    if(*(origen+i)== ' '){
+        y++;
+    }else{
+        break;
     }
-    
- }
+}      
+for(int i=cant-1;i >=0 ;i-- ){
+    if(*(origen+i)== ' '){
+        x++;
+    }else{
+        break;
+    }}
 
-for(int i=cant-1 ;i>=cant/2 ; i--){
-    if( *(destino+i) == ' '){
-    *(destino+i)=*(destino+i)+1;
-    } 
+
+for(int i =0;i< cant ; i++){
+    *(destino+i)= *(origen+i+y);   
+}
+
+
+for(int i=cant-2; i>=x;i--){
+    if(*(destino+i) == ' '){
+    *(destino+i)=*(origen+i-x);   
+    // printf("%d", i);
+ }else{
+    break;
  }
+}
+
+ 
  } ; // Saca blancos Izq . y Der .
 
  void strMayMin ( char *destino , const char *origen , may_min m ){
+    
     
     char ch;
     int cant = strlen(origen)-1;
