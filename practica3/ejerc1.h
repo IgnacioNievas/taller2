@@ -1,10 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 typedef struct tiempo{
-    int anio , mes,dia,hora,minutos,segundos;
+    int anio , mes,dia,hora,minuto,segundo;
 }Tiempo;
 
 int compara_tiempos(Tiempo *t1, Tiempo *t2);
-int comprar2(int t1, int t2);
-void imprimir_tiempo(Tiempo t); 
+int comparar(int t1, int t2);
+void imprime_tiempo(Tiempo t); 
+
+typedef struct {
+char * nombre;
+Tiempo ultima_mod;
+} Archivo;
+int cantidad();
+void ordena_alfa(Archivo *lista, int n);
+void ordena_temporal(Archivo *lista, int n);

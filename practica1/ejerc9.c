@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include<ctype.h>
+#include <assert.h>
 
  typedef enum { MAYUSCULAS , MINUSCULAS } may_min ;
 
@@ -69,27 +70,31 @@ return largo ;
     for(int i =0 ; i< strlen(origen); i++){
     if(i >= 0){
 return 1;
-    }else{
-return 0;
     }}
+return 0;
+    
 
  }
 
  void strCopia ( char *destino , const char *origen ){
-     int cant = strlen(origen)-1;
+//      int cant = strlen(origen);
      
-for(int i=0 ;i < cant  ; i++){
-    *(destino+i) = *(origen+i);   
-}
+// for(int i=0 ;i < cant  ; i++){
+//     *(destino+i) = *(origen+i);   
+// }
 
+
+while ((*destino++ = *origen++) != '\0');
  }
 
  char * reverse ( char *string ){
-     int cant = strlen(string)-1, j=0;
-    char *aux = (char*) malloc(sizeof(char)) , tem;
-if ( aux == NULL ){
-printf("no se pudo reserva la memoria \n");
- } 
+     int cant = strlen(string+1), j=0;
+    char *aux = (char*) malloc(cant) , tem;
+  
+assert( aux != NULL );
+// printf("no se pudo reserva la memoria \n");
+// exit(1);
+//  } 
      for(int i =cant-1 ;i>=0  ; i--){
   tem = *(string+i);
   *(aux+j++)=tem;
@@ -183,7 +188,7 @@ for(int i=cant-2; i>=x;i--){
     
     
     char ch;
-    int cant = strlen(origen)-1;
+    int cant = strlen(origen);
     
     if(m == 0){
   for(int j =0 ;j < cant; j++) {

@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "conio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "P2021.1.C": "cpp"
     }
 }
